@@ -1,0 +1,22 @@
+version: "2"
+services:
+    api:
+        image: dotnetcoredocker
+        restart: always
+        ports:
+            - "8080:80"
+        depends_on:
+            - mongodb
+        networks:
+            - webappnetwork
+    mongodb:
+        image: mongo:3.6
+        restart: always
+        container_name: mongodbcore
+        ports:
+            - 27017:27017
+        networks:
+            - webappnetwork
+networks:
+    webappnetwork:
+        driver: bridge                                    
